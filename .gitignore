@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+*.slxc
+*.asv
+*.mat~
+.vscode/

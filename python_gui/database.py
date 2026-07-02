@@ -1,6 +1,10 @@
+import os
 import mysql.connector
 from mysql.connector import Error
 from functools import wraps
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def connect_sql(func):
     @wraps(func)
@@ -9,18 +13,11 @@ def connect_sql(func):
         try:
             # Establish the database connection
             connection = mysql.connector.connect(
-                host='34.143.201.40',
-                database='industrial_robot',
-                user='root',
-                password='f67d2d008c6f8fb3f07cf6b1405e8bdb'
+                host=os.environ['DB_HOST'],
+                database=os.environ['DB_NAME'],
+                user=os.environ['DB_USER'],
+                password=os.environ['DB_PASSWORD']
             )
-            #xampp
-            # connection = mysql.connector.connect(
-            #     host='localhost',
-            #     database='industrial_robot',
-            #     user='root',
-            #     password=''
-            # )
 
             if connection.is_connected():
                 print("Connected to MySQL Server")

@@ -1,0 +1,6 @@
+numpy
+sympy
+pillow
+pyserial
+mysql-connector-python
+python-dotenv
