@@ -12,6 +12,7 @@ import serial
 
 root = Tk()
 root.title("robot_movement_paddle")
+root.iconbitmap(os.path.join(os.path.dirname(__file__), "..", "docs", "images", "logo.ico"))
 root.geometry("1920x1080")
 
 

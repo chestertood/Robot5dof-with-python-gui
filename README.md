@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/images/logo.png" alt="Robot5DOF logo" width="120"></p>
+
 # Robot5DOF
 
 Control a 5-DOF robotic arm from your desktop — type joint angles, get the end-effector pose; type a pose, get the joint angles; send it to the arm over serial.
@@ -78,7 +80,7 @@ python_gui/     Tkinter GUI + kinematics (entry point: UI_for_robot.py)
 arduino/        Servo firmware (serial commands)
 matlab/         RRT path planning + vendored Robotics Toolbox (rvctools)
 docs/media/     demo.gif + script that records it
-docs/images/    MOVE_J / MOVE_L reference diagrams
+docs/images/    logo + MOVE_J / MOVE_L reference diagrams
 ```
 
 | File | What it does |
