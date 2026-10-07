@@ -5,12 +5,13 @@ from database import *
 from Inverse_kinematic import *
 from Foward_kinematic import *
 import time
+import os
 
 import serial
 
 
 root = Tk()
-root.title("robot_movement_paddle กลุ่มสุดหล่อพร้อมลุย")
+root.title("robot_movement_paddle")
 root.geometry("1920x1080")
 
 
@@ -214,13 +215,13 @@ pz_Tranfromarea.place(x=910-500,y=460+150)
 
 
 
-image = Image.open("moveJ_picture.png")
+image = Image.open(os.path.join(os.path.dirname(__file__), "..", "docs", "images", "moveJ_picture.png"))
 resize_image = image.resize((150, 150))
 img = ImageTk.PhotoImage(resize_image)
 image_label = Label(image=img)
 image_label.place(x=1230,y=250)
 
-image1 = Image.open("moveL_picture.png")
+image1 = Image.open(os.path.join(os.path.dirname(__file__), "..", "docs", "images", "moveL_picture.png"))
 resize_image1 = image1.resize((150, 150))
 img1 = ImageTk.PhotoImage(resize_image1)
 image_label1 = Label(image=img1)
@@ -386,7 +387,14 @@ def send_theta_values(cursor):
 # Example button action to send specific theta values
 
 
-arduino = serial.Serial(port='COM3', baudrate=9600, timeout=1)
+try:
+    arduino = serial.Serial(port='COM3', baudrate=9600, timeout=1)
+except serial.SerialException as e:
+    print(f"Arduino not connected ({e}); running without serial")
+    class _NoArduino:  # ponytail: stub so UI runs without board
+        in_waiting = 0
+        def write(self, data): print(f"[no arduino] {data!r}")
+    arduino = _NoArduino()
 def send_moveJ():
     arduino.write(b'6\n')  # Send '1' to Arduino
     print("Sent 6 to Arduino")
